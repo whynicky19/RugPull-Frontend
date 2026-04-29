@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@400;500;600&display=swap');
+
+:root {
+  --bg:        #111620;
+  --bg2:       #181e2c;
+  --bg3:       #1e2638;
+  --bg4:       #242e42;
+
+  --red:       #ff3d3d;
+  --red-dim:   #cc2020;
+  --red-glow:  rgba(255,61,61,0.15);
+  --orange:    #ff7a00;
+  --yellow:    #ffd600;
+  --green:     #00e676;
+  --green-dim: rgba(0,230,118,0.12);
+
+  --danger:    #ff3d3d;
+  --warning:   #ff7a00;
+  --safe:      #00e676;
+
+  --border:    rgba(255,255,255,0.06);
+  --border2:   rgba(255,255,255,0.1);
+  --border3:   rgba(255,61,61,0.3);
+
+  --text1:     #eef1f6;
+  --text2:     #8899bb;
+  --text3:     #4a5a78;
+
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body:    'Barlow', sans-serif;
+  --font-mono:    'Space Mono', monospace;
+
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+
+  /* Backward compat */
+  --mint: #ff3d3d;
+  --mint-dim:  #00b85a;
+  --mint-glow: rgba(0,230,118,0.12);
+  --blue:      #0d1f3c;
+  --blue2:     #1a3a6e;
+  --blue-light:#6aadff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  background: var(--bg);
+  color: var(--text1);
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+/* Subtle grid */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 40% at 0% 0%, rgba(255,61,61,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 35% 30% at 100% 100%, rgba(255,122,0,0.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── INPUTS ─── */
+.input {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  color: var(--text1);
+  font-family: var(--font-mono);
+  padding: 14px 18px;
+  border-radius: var(--r-md);
+  font-size: 13px;
+  width: 100%;
+  outline: none;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+.input:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(255,61,61,0.08);
+}
+.input::placeholder { color: var(--text3); }
+
+/* ─── BUTTONS ─── */
+.btn {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border: none;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-mint {
+  background: var(--red);
+  color: #fff;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+.btn-mint:hover:not(:disabled) {
+  background: #ff5555;
+  box-shadow: 0 0 24px rgba(255,61,61,0.35);
+  transform: translateY(-1px);
+}
+.btn-mint:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+}
+.btn-ghost:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: rgba(255,61,61,0.05);
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,61,61,0.4); }
+  50%       { box-shadow: 0 0 0 6px rgba(255,61,61,0); }
+}
+@keyframes pulse-mint {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,230,118,0.3); }
+  50%       { box-shadow: 0 0 0 6px rgba(0,230,118,0); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes scan-line {
+  0%   { top: -2px; opacity: 0.8; }
+  100% { top: 100%; opacity: 0; }
+}
+@keyframes flicker {
+  0%, 92%, 100% { opacity: 1; }
+  93%           { opacity: 0.5; }
+  95%           { opacity: 1; }
+  97%           { opacity: 0.7; }
+}
